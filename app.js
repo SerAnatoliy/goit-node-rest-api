@@ -2,8 +2,12 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 import contactsRouter from "./routes/contactsRouter.js";
+
+dotenv.config();
+const { DB_HOST } = process.env;
 
 const app = express();
 
@@ -22,14 +26,11 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-const DB_HOST =
-  "mongodb+srv://anatoliyserduikov:5852617Ira@firstdb.cyvqwpr.mongodb.net/db-contacts?retryWrites=true&w=majority&appName=FirstDB";
-
 mongoose
   .connect(DB_HOST)
   .then(() => {
-    app.listen(3000, () => {
-      console.log("Server is running. Use our API on port: 3000");
+    app.listen(PORT, () => {
+      console.log(`Server is running. Use our API on port: ${PORT}`);
     });
     console.log("Database connection successful");
   })
