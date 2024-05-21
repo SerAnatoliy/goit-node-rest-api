@@ -39,10 +39,20 @@ const deleteContact = async (req, res) => {
   res.json(result);
 };
 
+const updateFavorites = async (req, res) => {
+  const { id } = req.params;
+  const result = await contactsService.updateContactFavorites(id, req.body);
+  if (!result) {
+    throw HttpError(404);
+  }
+  res.json(result);
+};
+
 export default {
   getAllContacts: control(getAllContacts),
   getOneContact: control(getOneContact),
   createContact: control(createContact),
   updateContact: control(updateContact),
   deleteContact: control(deleteContact),
+  updateFavorites: control(updateFavorites),
 };
