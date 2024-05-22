@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import contactsRouter from "./routes/contactsRouter.js";
 
 dotenv.config();
-const { DB_HOST } = process.env;
+const { DB_HOST, PORT } = process.env;
 
 const app = express();
 
@@ -35,7 +35,7 @@ mongoose
     console.log("Database connection successful");
   })
   .catch((error) => {
-    console.log(error, message);
+    console.log(error, error.message);
     process.exit(1);
   });
 

@@ -1,6 +1,6 @@
 import express from "express";
 import { isEmpty } from "../helpers/isEmpty.js";
-import { validateId } from "../helpers/validateId.js";
+import { isValidId } from "../helpers/validateId.js";
 import contactsControllers from "../controllers/contactsControllers.js";
 import validateBody from "../helpers/validateBody.js";
 import {
@@ -15,7 +15,7 @@ contactsRouter.get("/", contactsControllers.getAllContacts);
 
 contactsRouter.get("/:id", contactsControllers.getOneContact);
 
-contactsRouter.delete("/:id", validateId, contactsControllers.deleteContact);
+contactsRouter.delete("/:id", isValidId, contactsControllers.deleteContact);
 
 contactsRouter.post(
   "/",
@@ -26,7 +26,7 @@ contactsRouter.post(
 
 contactsRouter.put(
   "/:id",
-  validateId,
+  isValidId,
   isEmpty,
   validateBody(updateContactSchema),
   contactsControllers.updateContact
@@ -34,7 +34,7 @@ contactsRouter.put(
 
 contactsRouter.patch(
   "/:id/favorite",
-  validateId,
+  isValidId,
   isEmpty,
   validateBody(updateFavoriteSchema),
   contactsControllers.updateFavorites
