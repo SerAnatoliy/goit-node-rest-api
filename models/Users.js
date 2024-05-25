@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { handleSaveError, setUpdateSettings } from "./hooks";
+import { handleSaveError, setUpdateSettings } from "./hooks.js";
 import { emailRegexp } from "../helpers/user-constants.js";
 
 const usersSchema = new Schema(
@@ -12,7 +12,7 @@ const usersSchema = new Schema(
       type: String,
       required: [true, "Email is required"],
       unique: true,
-      math: emailRegexp,
+      match: emailRegexp,
     },
     subscription: {
       type: String,

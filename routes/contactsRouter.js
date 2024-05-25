@@ -1,6 +1,6 @@
 import express from "express";
-import { isEmpty } from "../helpers/isEmpty.js";
-import { isValidId } from "../helpers/validateId.js";
+import { isEmpty } from "../middlewares/isEmpty.js";
+import { isValidId } from "../middlewares/validateId.js";
 import contactsControllers from "../controllers/contactsControllers.js";
 import validateBody from "../helpers/validateBody.js";
 import {
